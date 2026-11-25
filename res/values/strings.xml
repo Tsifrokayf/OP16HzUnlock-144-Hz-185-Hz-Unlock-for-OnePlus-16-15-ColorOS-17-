@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OP16 144/185 Гц</string>
+    <string name="xposed_desc">Разблокировка 144 Гц и 185 Гц в ColorOS 17 и Настройках (OnePlus 16)</string>
+    <string-array name="xposed_scope">
+        <item>system</item>
+        <item>com.android.settings</item>
+    </string-array>
+</resources>
