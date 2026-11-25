@@ -1,21 +1,21 @@
 # OP16HzUnlock — 144 Hz & 185 Hz Unlock for OnePlus 16 / 15 (ColorOS 17)
 
-Lightweight, open-source, fully systemless **LSPosed / Vector** module (~16 KB) that unlocks the native **144 Hz** and **185 Hz** display modes on **OnePlus 16 (PYB110)** / **OnePlus 15** running **ColorOS 17 (Android 17)** and integrates them directly into the stock ColorOS Display Settings menu.
+**English** | [Русский](README.ru.md)
 
-> **RU:** Лёгкий open-source LSPosed / Vector-модуль (16 КБ, полностью systemless, не требует разблокировки загрузчика), разблокирующий аппаратные режимы **144 Гц** и **185 Гц** на **OnePlus 16 / OnePlus 15 (ColorOS 17)** и добавляющий их прямо в штатное меню настроек экрана.
+Lightweight, open-source, fully systemless **LSPosed / Vector** module (~16 KB) that unlocks the native **144 Hz** and **185 Hz** display modes on **OnePlus 16 (PYB110)** / **OnePlus 15** running **ColorOS 17 (Android 17)** and integrates them directly into the stock ColorOS Display Settings menu.
 
 ---
 
-## Features / Возможности
+## Features
 
 - **Native Settings UI integration** — adds all 4 high refresh rate options (**120 Hz / 144 Hz / 165 Hz / 185 Hz**) to *Settings → Display & brightness → Screen refresh rate → High → Refresh rate*.
 - **True hardware switching** — removes `OplusRefreshRatePolicyImpl` system-wide 120/165 Hz caps so `SurfaceFlinger` switches to real hardware modes (`144.00 Hz`, `165.00 Hz`, `185.00 Hz`) across the system and third-party apps.
 - **Fixes 60 Hz fallback bug (v1.1)** — hooks `OplusRefreshRatePolicyImpl$SettingsObserver.updatePeakRefreshRate()` and `resetMinRefreshRate()`, preventing ColorOS from forcibly resetting `min_refresh_rate` to `0.0` (which caused `DisplayModeDirector` to clamp rendering to 60 Hz).
-- **Safe & systemless** — preserves Camera refresh limits, AOD 30 Hz, Standard 60 Hz, and adaptive LTPO in Auto mode. Does not touch any system partitions (`boot`, `super`, `vbmeta`) and works even with temporary LKM root on a locked bootloader.
+- **Safe & systemless** — preserves Camera refresh limits, AOD 30 Hz, Standard 60 Hz, and adaptive LTPO in Auto mode. Does not modify any system partitions (`boot`, `super`, `vbmeta`) and works even with temporary LKM root on a locked bootloader.
 
 ---
 
-## Screenshots / Скриншоты
+## Screenshots
 
 | Active 185 Hz in Settings | Dropdown 120 / 144 / 165 / 185 Hz |
 | :---: | :---: |
@@ -23,14 +23,14 @@ Lightweight, open-source, fully systemless **LSPosed / Vector** module (~16 KB) 
 
 ---
 
-## Requirements / Требования
+## Requirements
 
 - **Device:** OnePlus 16 (`PYB110`, tested on ColorOS 17 / Android 17). Should also work on OnePlus 15 (same display architecture and `OplusRefreshRatePolicyImpl`).
 - **Framework:** LSPosed / Vector / JingMatrix LSPosed (Zygisk).
 
 ---
 
-## Installation / Установка
+## Installation
 
 1. Download and install **`OP16HzUnlock-1.1.apk`** from [Releases](../../releases).
 2. Open **LSPosed / Vector Manager → Modules → OP16 144/185 Гц** and enable the module.
@@ -42,7 +42,7 @@ Lightweight, open-source, fully systemless **LSPosed / Vector** module (~16 KB) 
 
 ---
 
-## Verification / Проверка через ADB
+## Verification via ADB
 
 ```bash
 adb shell "su -c 'dumpsys SurfaceFlinger | grep -E \"activeMode=|renderRate=\" | head -n 4'"
@@ -59,7 +59,7 @@ Expected output on OnePlus 16:
 
 ---
 
-## How It Works / Как это работает
+## How It Works
 
 All hooks live in a single clean file: [`src/com/op16/hzunlock/RefreshRateUnlockHook.java`](src/com/op16/hzunlock/RefreshRateUnlockHook.java).
 
@@ -75,7 +75,7 @@ All hooks live in a single clean file: [`src/com/op16/hzunlock/RefreshRateUnlock
 
 ---
 
-## Building from Source / Сборка из исходников
+## Building from Source
 
 Requires **JDK 11+** and **Android SDK** (`aapt2`, `d8`, `zipalign`, `apksigner`, `android.jar`). Update `SDK` and `KEYSTORE` paths in `build.sh`, then run:
 
@@ -85,7 +85,7 @@ Requires **JDK 11+** and **Android SDK** (`aapt2`, `d8`, `zipalign`, `apksigner`
 
 ---
 
-## Changelog / История изменений
+## Changelog
 
 - **v1.1** — Fixed 144 Hz / 165 Hz / 120 Hz falling back to 60 Hz by hooking `SettingsObserver.updatePeakRefreshRate()` and `resetMinRefreshRate()`, and cleared sticky `mOverridePeakRefreshRate` when switching down.
 - **v1.0** — Initial release with 120 / 144 / 165 / 185 Hz Settings UI dropdown and `system_server` policy hooks.
